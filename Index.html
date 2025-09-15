@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeria de Arte - Jomaro Cabrela</title>
+  <style>
+    :root {
+      --logo-base: 200px; /* tamanho base do logo */
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-bottom: 0;
+      padding-top: 0;
+    }
+
+    /* Cabeçalho fixo */
+    header {
+      text-align: center;
+      padding: 12px 16px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    header a { display: inline-block; }
+    /* Logo aumentado 180% */
+    header img {
+      width: calc(var(--logo-base) * 1.8);
+      max-width: 95%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    /* Título reduzido para 70% */
+    header h1 {
+      margin: 0;
+      font-size: 16.8px;
+      line-height: 1;
+      font-weight: normal;
+      letter-spacing: 0.2px;
+    }
+
+    /* Galeria estilo masonry */
+    .gallery {
+      flex: 1;
+      column-width: 100px;   /* miniaturas ~50% menores (meio termo) */
+      column-gap: 12px;
+      padding: 12px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .gallery > a,
+    .gallery > img {
+      break-inside: avoid;
+      display: inline-block;
+      width: 100%;
+      margin: 0 0 12px;
+      vertical-align: top;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: pointer;
+      border: 1px solid #fff;
+      transition: transform 0.2s ease;
+      background: #111;
+    }
+    .gallery img:hover { transform: scale(1.03); }
+
+    footer {
+      text-align: center;
+      padding: 14px 12px;
+      background: #111;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 900;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .author-photo {
+      width: 64px;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+      border-radius: 0;
+    }
+
+    .socials {
+      margin-top: 10px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+    }
+    .socials img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      display: block;
+    }
+
+    footer .copyright {
+      color: white;
+      text-decoration: none;
+    }
+    footer .copyright:hover {
+      text-decoration: underline;
+    }
+
+    footer a[href^="mailto:"] {
+      color: #fff;
+      font-size: 0.85em;
+      text-decoration: none;
+    }
+    footer a[href^="mailto:"]:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.95);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.open { display: flex; }
+    .modal img {
+      max-width: 92vw;
+      max-height: 90vh;
+      border: 2px solid #fff;
+      box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+    .close {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  font-size: 40px;       /* ligeiramente maior */
+  color: #fff;           /* cruz branca */
+  background: transparent; /* sem fundo */
+  border: none;            /* sem borda */
+  outline: none;           /* remove a cercadura azul/cinza do foco */
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+  padding: 0;
+}
+
+.close:hover {
+  color: #ff4444;        /* opcional: fica vermelha no hover */
+}
+  </style>
+
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <script src="https://cdn.counter.dev/script.js"
+          data-id="e7a29e89-effa-49c1-8723-d4f954930e9a"
+          data-utcoffset="1" defer></script>
+</head>
+<body>
+
+  <header id="siteHeader">
+    <a href="https://sites.google.com/site/jcarteart/" target="_blank" rel="noopener">
+      <img id="logoImg" src="JomaroCabrela_nome.webp" alt="Jomaro Cabrela - Página Principal" width="300" height="120">
+    </a>
+    <h1 id="siteTitle">Galeria - Intranquilidade</h1>
+  </header>
+
+  <main>
+    <div class="gallery" id="gallery">
+      <!-- as tuas imagens aqui -->
+      <img src="Quadros/27.webp" alt="Quadro 27" width="600" height="800" loading="lazy">
+<img src="Quadros/28.webp" alt="Quadro 28" width="600" height="800" loading="lazy">
+<img src="Quadros/30.webp" alt="Quadro 30" width="600" height="800" loading="lazy">
+<img src="Quadros/31.webp" alt="Quadro 31" width="600" height="800" loading="lazy">
+<img src="Quadros/35.webp" alt="Quadro 35" width="600" height="800" loading="lazy">
+<img src="Quadros/36.webp" alt="Quadro 36" width="600" height="800" loading="lazy">
+<img src="Quadros/39.webp" alt="Quadro 39" width="600" height="800" loading="lazy">
+<img src="Quadros/40.webp" alt="Quadro 40" width="600" height="800" loading="lazy">
+<img src="Quadros/46.webp" alt="Quadro 46" width="600" height="800" loading="lazy">
+<img src="Quadros/49.webp" alt="Quadro 49" width="600" height="800" loading="lazy">
+<img src="Quadros/52.webp" alt="Quadro 52" width="600" height="800" loading="lazy">
+<img src="Quadros/53.webp" alt="Quadro 53" width="600" height="800" loading="lazy">
+<img src="Quadros/54.webp" alt="Quadro 54" width="600" height="800" loading="lazy">
+<img src="Quadros/55.webp" alt="Quadro 55" width="600" height="800" loading="lazy">
+<img src="Quadros/58.webp" alt="Quadro 58" width="600" height="800" loading="lazy">
+<img src="Quadros/69.webp" alt="Quadro 69" width="600" height="800" loading="lazy">
+<img src="Quadros/122.webp" alt="Quadro 122" width="600" height="800" loading="lazy">
+<img src="Quadros/128.webp" alt="Quadro 128" width="600" height="800" loading="lazy">
+<img src="Quadros/137.webp" alt="Quadro 137" width="600" height="800" loading="lazy">
+<img src="Quadros/147.webp" alt="Quadro 147" width="600" height="800" loading="lazy">
+<img src="Quadros/148.webp" alt="Quadro 148" width="600" height="800" loading="lazy">
+<img src="Quadros/149.webp" alt="Quadro 149" width="600" height="800" loading="lazy">
+<img src="Quadros/152.webp" alt="Quadro 152" width="600" height="800" loading="lazy">
+<img src="Quadros/153.webp" alt="Quadro 153" width="600" height="800" loading="lazy">
+<img src="Quadros/223.webp" alt="Quadro 223" width="600" height="800" loading="lazy">
+<img src="Quadros/225.webp" alt="Quadro 225" width="600" height="800" loading="lazy">
+<img src="Quadros/226.webp" alt="Quadro 226" width="600" height="800" loading="lazy">
+<img src="Quadros/227.webp" alt="Quadro 227" width="600" height="800" loading="lazy">
+<img src="Quadros/228.webp" alt="Quadro 228" width="600" height="800" loading="lazy">
+<img src="Quadros/246.webp" alt="Quadro 246" width="600" height="800" loading="lazy">
+<img src="Quadros/247.webp" alt="Quadro 247" width="600" height="800" loading="lazy">
+<img src="Quadros/254.webp" alt="Quadro 254" width="600" height="800" loading="lazy">
+<img src="Quadros/258.webp" alt="Quadro 258" width="600" height="800" loading="lazy">
+<img src="Quadros/261.webp" alt="Quadro 261" width="600" height="800" loading="lazy">
+<img src="Quadros/276.webp" alt="Quadro 276" width="600" height="800" loading="lazy">
+<img src="Quadros/289.webp" alt="Quadro 289" width="600" height="800" loading="lazy">
+<img src="Quadros/296.webp" alt="Quadro 296" width="600" height="800" loading="lazy">
+<img src="Quadros/297.webp" alt="Quadro 297" width="600" height="800" loading="lazy">
+<img src="Quadros/300.webp" alt="Quadro 300" width="600" height="800" loading="lazy">
+<img src="Quadros/301.webp" alt="Quadro 301" width="600" height="800" loading="lazy">
+<img src="Quadros/302.webp" alt="Quadro 302" width="600" height="800" loading="lazy">
+<img src="Quadros/303.webp" alt="Quadro 303" width="600" height="800" loading="lazy">
+<img src="Quadros/308.webp" alt="Quadro 308" width="600" height="800" loading="lazy">
+<img src="Quadros/309.webp" alt="Quadro 309" width="600" height="800" loading="lazy">
+<img src="Quadros/310.webp" alt="Quadro 310" width="600" height="800" loading="lazy">
+<img src="Quadros/314.webp" alt="Quadro 314" width="600" height="800" loading="lazy">
+<img src="Quadros/319.webp" alt="Quadro 319" width="600" height="800" loading="lazy">
+<img src="Quadros/320.webp" alt="Quadro 320" width="600" height="800" loading="lazy">
+<img src="Quadros/326.webp" alt="Quadro 326" width="600" height="800" loading="lazy">
+<img src="Quadros/327.webp" alt="Quadro 327" width="600" height="800" loading="lazy">
+<img src="Quadros/352.webp" alt="Quadro 352" width="600" height="800" loading="lazy">
+<img src="Quadros/353.webp" alt="Quadro 353" width="600" height="800" loading="lazy">
+<img src="Quadros/354.webp" alt="Quadro 354" width="600" height="800" loading="lazy">
+<img src="Quadros/357.webp" alt="Quadro 357" width="600" height="800" loading="lazy">
+<img src="Quadros/370.webp" alt="Quadro 370" width="600" height="800" loading="lazy">
+<img src="Quadros/371.webp" alt="Quadro 371" width="600" height="800" loading="lazy">
+<img src="Quadros/396.webp" alt="Quadro 396" width="600" height="800" loading="lazy">
+<img src="Quadros/398.webp" alt="Quadro 398" width="600" height="800" loading="lazy">
+<img src="Quadros/411.webp" alt="Quadro 411" width="600" height="800" loading="lazy">
+<img src="Quadros/467.webp" alt="Quadro 467" width="600" height="800" loading="lazy">
+<img src="Quadros/468.webp" alt="Quadro 468" width="600" height="800" loading="lazy">
+<img src="Quadros/469.webp" alt="Quadro 469" width="600" height="800" loading="lazy">
+<img src="Quadros/473.webp" alt="Quadro 473" width="600" height="800" loading="lazy">
+<img src="Quadros/474.webp" alt="Quadro 474" width="600" height="800" loading="lazy">
+<img src="Quadros/475.webp" alt="Quadro 475" width="600" height="800" loading="lazy">
+<img src="Quadros/476.webp" alt="Quadro 476" width="600" height="800" loading="lazy">
+<img src="Quadros/480.webp" alt="Quadro 480" width="600" height="800" loading="lazy">
+<img src="Quadros/481.webp" alt="Quadro 481" width="600" height="800" loading="lazy">
+<img src="Quadros/482.webp" alt="Quadro 482" width="600" height="800" loading="lazy">
+<img src="Quadros/486.webp" alt="Quadro 486" width="600" height="800" loading="lazy">
+<img src="Quadros/487.webp" alt="Quadro 487" width="600" height="800" loading="lazy">
+<img src="Quadros/488.webp" alt="Quadro 488" width="600" height="800" loading="lazy">
+<img src="Quadros/489.webp" alt="Quadro 489" width="600" height="800" loading="lazy">
+<img src="Quadros/490.webp" alt="Quadro 490" width="600" height="800" loading="lazy">
+<img src="Quadros/491.webp" alt="Quadro 491" width="600" height="800" loading="lazy">
+<img src="Quadros/493.webp" alt="Quadro 493" width="600" height="800" loading="lazy">
+<img src="Quadros/494.webp" alt="Quadro 494" width="600" height="800" loading="lazy">
+<img src="Quadros/495.webp" alt="Quadro 495" width="600" height="800" loading="lazy">
+<img src="Quadros/496.webp" alt="Quadro 496" width="600" height="800" loading="lazy">
+<img src="Quadros/504.webp" alt="Quadro 504" width="600" height="800" loading="lazy">
+<img src="Quadros/509.webp" alt="Quadro 509" width="600" height="800" loading="lazy">
+<img src="Quadros/564.webp" alt="Quadro 564" width="600" height="800" loading="lazy">
+<img src="Quadros/576.webp" alt="Quadro 576" width="600" height="800" loading="lazy">
+
+      <!-- ... resto das imagens ... -->
+    </div>
+  </main>
+
+  <footer id="siteFooter">
+    <p>
+      <a href="https://jomaro34.github.io/Jomaro-Cabrela-Autobiografia/">
+        <img class="author-photo" src="JomaroCabrela_Foto.webp" alt="Foto de Jomaro Cabrela" width="80" height="110">
+      </a>
+    </p>
+    <p>
+      <a class="copyright" href="https://jomaro34.github.io/Jomaro-Cabrela/">&copy; Jomaro Cabrela</a><br>
+      <a href="mailto:jomarocabrela@gmail.com">jomarocabrela@gmail.com</a>
+    </p>
+
+    <div class="socials">
+      <a href="https://www.facebook.com/jomaro.cabrela/"><img src="FaceBook.webp" alt="Facebook pessoal"></a>
+      <a href="https://www.facebook.com/jomarocabrelaarte/"><img src="FaceBook.webp" alt="Facebook Arte"></a>
+      <a href="https://www.instagram.com/jomarocabrela/"><img src="Instagram.webp" alt="Instagram"></a>
+      <a href="https://pt.pinterest.com/jcabrela/"><img src="Pinterest.webp" alt="Pinterest"></a>
+      <a href="https://x.com/JCabrela"><img src="X.webp" alt="X (Twitter)"></a>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal" aria-hidden="true" role="dialog" aria-label="Visualizador de imagem">
+    <button class="close" aria-label="Fechar">&times;</button>
+    <img id="modalImg" alt="">
+  </div>
+
+  <script>
+    function updateBodySpacing() {
+      const header = document.getElementById('siteHeader');
+      const footer = document.getElementById('siteFooter');
+      const extra = 12;
+      if (header) document.body.style.paddingTop = (header.offsetHeight + extra) + 'px';
+      if (footer) document.body.style.paddingBottom = (footer.offsetHeight + extra) + 'px';
+    }
+
+    function initGallery() {
+      const gallery = document.getElementById('gallery');
+      if (!gallery) return;
+      const items = Array.from(gallery.children);
+      for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+      }
+      gallery.innerHTML = "";
+      items.forEach(n => gallery.appendChild(n));
+
+      const modal = document.getElementById('myModal');
+      const modalImg = document.getElementById('modalImg');
+      const closeBtn = modal.querySelector('.close');
+
+      function openModal(src, alt) {
+        modalImg.src = src;
+        modalImg.alt = alt || '';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        closeBtn.focus();
+      }
+      function closeModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        modalImg.removeAttribute('src');
+        modalImg.alt = '';
+      }
+
+      gallery.querySelectorAll('img').forEach(img => {
+        img.addEventListener('click', () => {
+          if (img.closest('a')) return;
+          openModal(img.src, img.alt);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initGallery();
+      updateBodySpacing();
+    });
+
+    window.addEventListener('resize', function() {
+      clearTimeout(window._updSpacingTimer);
+      window._updSpacingTimer = setTimeout(updateBodySpacing, 120);
+    });
+  </script>
+
+</body>
+</html>
